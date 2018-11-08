@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main menu.unity
+    guid: 54496c1989295b642bc576dc702fdeea
+  - enabled: 1
+    path: Assets/Scenes/LoadOrNewGame.unity
+    guid: 0eaa095b0f008d44982ef8a495af34c3
+  - enabled: 1
+    path: Assets/Scenes/Settings Scene.unity
+    guid: f3a42ab68de0d9545a36d67bab3be1df
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 6987f99d8a5c7fc4480dc31e681415c0
+  - enabled: 1
+    path: Assets/Scenes/LoadSave.unity
+    guid: 3765291df1489194bab3042b14599568
+  - enabled: 1
+    path: Assets/Scenes/NewSave.unity
+    guid: c1e10f02aa50e814bad8efb2dc4486ee
+  - enabled: 1
+    path: Assets/Scenes/Level select.unity
+    guid: 452eb2f914c5da84a8c702c8ce6e31d2
+  - enabled: 1
+    path: Assets/Scenes/Levels/TutorialOnePipe.unity
+    guid: f985f0e9fc6dfc648a733e614b174112
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level1 (better).unity
+    guid: 822cdf4ffaef76e48ae735544eff56ce
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level3.unity
+    guid: 42cc61beb1fef27498363033f44a8dca
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level2.unity
+    guid: 59ec6fe0de6ab9e4a81ce1678070ff91
