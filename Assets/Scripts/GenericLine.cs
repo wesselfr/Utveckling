@@ -83,6 +83,7 @@ public class GenericLine : MonoBehaviour {
 
         GameObject lineEnd = null;
         Material lineMaterial = null;
+	//Switch Resources depending on LineType.
         switch (m_Type)
         {
             case LineType.Water:
@@ -96,10 +97,12 @@ public class GenericLine : MonoBehaviour {
         }
 
         m_Renderer.material = lineMaterial;
-
+	
+	//Create two line endings and spawn them at each end of the line.
         GameObject pipeA = Instantiate(lineEnd, m_Renderer.GetPosition(0), Quaternion.identity);
-        GameObject pipeB = Instantiate(lineEnd, m_Renderer.GetPosition(1), Quaternion.identity);
-
+        GameObject pipeB = Instantiate(lineEnd, m_Renderer.GetPosition(1), Quaternion.identity);	
+	
+	//Rotate the objects so they face the inner part of the line.
         Vector3 vectorToTarget = m_B.position - m_A.position;
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
         Quaternion a = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -109,7 +112,8 @@ public class GenericLine : MonoBehaviour {
         angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
         Quaternion b = Quaternion.AngleAxis(angle, Vector3.forward);
         pipeB.transform.rotation = Quaternion.RotateTowards(pipeB.transform.rotation, b, 360f);
-
+	
+	//Flip the right side depending on its type.
         if (m_Type == LineType.Water)
         {
             pipeB.GetComponent<SpriteRenderer>().flipY = false;
@@ -172,7 +176,8 @@ public class GenericLine : MonoBehaviour {
             m_A.isTransporting = true;
             m_B.isTransporting = true;  
         }
-
+	
+	//Remove Pipe on RightMouseButtonDown
         if (Input.GetMouseButtonDown(1))
         {
 
@@ -180,28 +185,26 @@ public class GenericLine : MonoBehaviour {
             mousePos.z = 0;
             if (gameObject.GetComponent<Renderer>().bounds.Contains(mousePos))
             {
+	    	//First Disconnect the pipes.
                 m_A.Disconnect();
                 m_B.Disconnect();
-
+		
+		//Ensure they are not transporting anymore.
                 m_A.isTransporting = false;
                 m_B.isTransporting = false;
-
+		
+		//Update all the connections change the flow of resources.
                 ServiceProvider.instance.puzzleManager.CheckConnections();
-
+		
+		//Finally Destroy the pipe and its pipe ends.
                 Destroy(m_LineEndA);
                 Destroy(m_LineEndB);
-
-
                 Destroy(this.gameObject);
             }
         }
     }
-
-    public void RemovePipe()
-    {
-
-    }
-
+    
+    //Updates the pipe collider so the player can interact with it.
     public void UpdateCollider()
     {
 
@@ -218,10 +221,5 @@ public class GenericLine : MonoBehaviour {
     public LineType type
     {
         get { return m_Type; }
-    }
-
-    public void OnDrawGizmosSelected()
-    {
-
     }
 }
